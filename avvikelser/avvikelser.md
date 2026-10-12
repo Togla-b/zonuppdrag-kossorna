@@ -1,0 +1,1 @@
+En avvikelse upptäcktes där 172.20.1.136 upprättade en TCP-anslutning till 203.0.113.17 på port 4444 och överförde 33 byte data. I de undersökta filerna förekommer denna destination endast i det aktuella flödet, medan källadressen även kommunicerar med andra destinationer. Detta gör flödet värt att undersöka vidare, men det räcker inte för att fastställa att trafiken är skadlig.
