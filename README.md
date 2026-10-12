@@ -2,14 +2,14 @@ Zonuppdraget för team Kossorna - Boiler Room Uppgift
 
 ## Ambitionsnivå
 
-Vi ska inte komma sist i alla fall
+Vi ska inte komma sist i alla fall!
 
-## fattar beslut
+## Fattar beslut
 
-* alla säger sina ideer, den ideen som får flest röster kör vi på.
-* eftersom vi är jämtfördelade så kör vi sten-sax-påse om det skulle vara lika
+* Alla säger sina ideer, den ideen som får flest röster kör vi på.
+* Eftersom vi är jämtfördelade så kör vi sten-sax-påse om det skulle vara lika
 
-## roller
+## Roller
 Presentatör - Martin och Gabriel
 Facilitator - Kareem
 Tidhållare - Rasmus
