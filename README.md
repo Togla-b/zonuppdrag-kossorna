@@ -24,7 +24,7 @@ Kossorna
 1. Alla lägger fram sina idéer.
 2. Vi väger konsekvenserna och jämför vilket arbetssätt som blir smidigast.
 3. Vi röstar – idén med flest röster kör vi på.
-4. Vi lägger max [FYLL I, t.ex. 5] minuter på beslutet.
+
 
 ## Roller
 - **Facilitator:** Kareem
