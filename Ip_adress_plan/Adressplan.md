@@ -1,3 +1,5 @@
+**IPv6 är avstängt för säkerhetens skull i detta nätverk.**
+
 | **Grupp** | **Idag** | **Med 25 % tillväxt** |
 | --- | ---: | ---: |
 | Klienter | 135 | 169 |
