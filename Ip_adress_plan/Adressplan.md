@@ -39,3 +39,38 @@
 |    17 | Länknät 1                         |         2 |        /30 | 10.40.2.96         | 10.40.2.97–10.40.2.98   | 10.40.2.99    |
 |    18 | Länknät 2                         |         2 |        /30 | 10.40.2.100        | 10.40.2.101–10.40.2.102 | 10.40.2.103   |
 |    19 | Länknät 3                         |         2 |        /30 | 10.40.2.104        | 10.40.2.105–10.40.2.106 | 10.40.2.107   |
+
+
+
+## Tillgångar, klassificering och zonindelning
+
+| Tillgång | Antal +25 % | Prefix | Känslighet | Driftkritikalitet | Föreslagen zon |
+|---|---:|---|---|---|---|
+| Klienter | 169 | /24 | Medel | Medel | Klientzon |
+| Gäst och besök | 44 | /26 | Låg | Låg | Gästzon |
+| Servrar | 18 | /27 | Hög | Hög | Serverzon |
+| Drift och administration | 12 | /28 | Hög | Hög | Driftzon |
+| Databaser | 5 | /29 | Hög | Hög | Databaszon |
+| Logg och övervakning | 7 | /28 | Hög | Hög | Övervakningszon |
+| DMZ – webbservrar | 10 | /28 | Medel–hög | Hög | DMZ |
+| DMZ – e-post | 8 | /28 | Hög | Hög | DMZ |
+| Cybersäkerhetsteam | 13 | /28 | Hög | Hög | Säkerhetszon |
+| Säkerhetsverktyg och analys | 9 | /28 | Hög | Hög | Säkerhetszon |
+| Incidenthantering och forensik | 8 | /28 | Hög | Hög | Säkerhetszon |
+| Backup och återställning | 7 | /28 | Hög | Hög | Backupzon |
+| Nätverksutrustning och management | 13 | /28 | Hög | Hög | Driftzon |
+| VPN och fjärråtkomst | 30 | /27 | Hög | Hög | VPN-zon |
+| IoT och skrivare | 23 | /27 | Låg–medel | Medel | IoT-zon |
+| Test- och utvecklingsmiljö | 19 | /27 | Medel | Låg–medel | Testzon |
+| Länknät mellan routrar | 3 x 2 | 3 x /30 | Medel | Hög | Transitnät |
+
+## 2. Motivering till zonindelning
+
+Vi har delat in tillgångarna i olika säkerhetszoner utifrån deras funktion, känslighet och driftkritikalitet.
+
+Syftet är att separera olika typer av nätverkstrafik och begränsa åtkomsten mellan zonerna för att minska säkerhetsriskerna.
+
+Exempelvis placeras databaser i en separat zon eftersom de kan innehålla känslig information. Gästnätverket isoleras från interna servrar eftersom gäster inte ska ha tillgång till organisationens interna resurser.
+
+DMZ används för publika tjänster som behöver kunna nås utifrån, samtidigt som åtkomsten till interna nätverket begränsas.
+
