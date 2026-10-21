@@ -31,7 +31,7 @@ Det svåra är allt som inte är en webbläsare: Linux-distributioner, IoT-enhet
 ## Sammanfattning
 Situationen jämförs med 2014 Hearthbleed, men menar att det här kan bli ännu svårare att städa upp.
 
-Vad: Åttå mellanliggande certifikat från eMudhra med för svaga privata nycklar
-Varför: Nycklarna kan återksapas och användas för att signera falska certifikat som litas på globalt
+Vad: Åttå mellanliggande certifikat från eMudhra med för svaga privata nycklar.
+Varför: Nycklarna kan återksapas och användas för att signera falska certifikat som litas på globalt.
 Påverkan: Främst MITM-attacker, särskilt mot VPN och i nätverk som angriparen kan kontrollera. Webbläsare påverkas mindre tack vare blockeringen.
 Åtgärder: Blockering i webbläsare, uppdatering av trust stores och program. Granska egna systemet och tjänster som litar på dem certifikaten.
