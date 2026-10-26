@@ -74,9 +74,6 @@
 | Test- och utvecklingsmiljö | 5 | /29 | Medel | Låg–medel | Testzon |
 | Länknät mellan routrar | 3 × 2 | 3 × /30 | Medel | Hög | Transitnät |
 
-## 4. Kort motivering
-
-Vi har anpassat antalet enheter för att alla grupper ska få plats inom nätet 10.40.5.0/24. Vi använde VLSM för att dela upp nätet i mindre subnät efter varje grupps behov, inklusive 25 % tillväxt. Vi har behållit separata nät för bland annat klienter, servrar, databaser och administration för att förbättra säkerheten och minska risken för obehörig åtkomst.
 ## 2. Motivering till zonindelning
 
 Vi har delat in tillgångarna i olika säkerhetszoner utifrån deras funktion, känslighet och driftkritikalitet.
