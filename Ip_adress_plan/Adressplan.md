@@ -1,71 +1,82 @@
 **IPv6 är avstängt för säkerhetens skull i detta nätverk.**
 
-| **Grupp** | **Idag** | **Med 25 % tillväxt** |
-| --- | ---: | ---: |
-| Klienter | 135 | 169 |
-| Gäst och besök | 35 | 44 |
-| Servrar | 14 | 18 |
-| Drift och administration | 9 | 12 |
-| Databaser | 4 | 5 |
-| Logg och övervakning | 5 | 7 |
-| DMZ – webbservrar och publika tjänster | 8 | 10 |
-| DMZ – e-post och externa tjänster | 6 | 8 |
-| Cybersäkerhetsteam | 10 | 13 |
-| Säkerhetsverktyg och analys | 7 | 9 |
-| Incidenthantering och forensik | 6 | 8 |
-| Backup och återställning | 5 | 7 |
-| Nätverksutrustning och management | 10 | 13 |
-| VPN och fjärråtkomst | 24 | 30 |
-| IoT och skrivare | 18 | 23 |
-| Test- och utvecklingsmiljö | 15 | 19 |
-| Länknät mellan routrar | 3 länknät  2 adresser | 3 länknät  2 adresser |
+# Nätverksplanering – 10.40.5.0/24
 
-| **#** | **Grupp**                         | **Behov** | **Prefix** | **Nätverksadress** | **Användbara adresser** | **Broadcast** |
-| ----: | --------------------------------- | --------: | ---------: | ------------------ | ----------------------- | ------------- |
-|     1 | Klienter                          |       169 |        /24 | 10.40.0.0          | 10.40.0.1–10.40.0.254   | 10.40.0.255   |
-|     2 | Gäst och besök                    |        44 |        /26 | 10.40.1.0          | 10.40.1.1–10.40.1.62    | 10.40.1.63    |
-|     3 | VPN och fjärråtkomst              |        30 |        /27 | 10.40.1.64         | 10.40.1.65–10.40.1.94   | 10.40.1.95    |
-|     4 | IoT och skrivare                  |        23 |        /27 | 10.40.1.96         | 10.40.1.97–10.40.1.126  | 10.40.1.127   |
-|     5 | Servrar                           |        18 |        /27 | 10.40.1.128        | 10.40.1.129–10.40.1.158 | 10.40.1.159   |
-|     6 | Test- och utvecklingsmiljö        |        19 |        /27 | 10.40.1.160        | 10.40.1.161–10.40.1.190 | 10.40.1.191   |
-|     7 | Cybersäkerhetsteam                |        13 |        /28 | 10.40.1.192        | 10.40.1.193–10.40.1.206 | 10.40.1.207   |
-|     8 | DMZ – webbservrar                 |        10 |        /28 | 10.40.1.208        | 10.40.1.209–10.40.1.222 | 10.40.1.223   |
-|     9 | Nätverksutrustning och management |        13 |        /28 | 10.40.1.224        | 10.40.1.225–10.40.1.238 | 10.40.1.239   |
-|    10 | Drift och administration          |        12 |        /28 | 10.40.1.240        | 10.40.1.241–10.40.1.254 | 10.40.1.255   |
-|    11 | Säkerhetsverktyg och analys       |         9 |        /28 | 10.40.2.0          | 10.40.2.1–10.40.2.14    | 10.40.2.15    |
-|    12 | Incidenthantering och forensik    |         8 |        /28 | 10.40.2.16         | 10.40.2.17–10.40.2.30   | 10.40.2.31    |
-|    13 | Backup och återställning          |         7 |        /28 | 10.40.2.32         | 10.40.2.33–10.40.2.46   | 10.40.2.47    |
-|    14 | Databaser                         |         5 |        /29 | 10.40.2.48         | 10.40.2.49–10.40.2.54   | 10.40.2.55    |
-|    15 | DMZ – e-post                      |         8 |        /28 | 10.40.2.64         | 10.40.2.65–10.40.2.78   | 10.40.2.79    |
-|    16 | Logg och övervakning              |         7 |        /28 | 10.40.2.80         | 10.40.2.81–10.40.2.94   | 10.40.2.95    |
-|    17 | Länknät 1                         |         2 |        /30 | 10.40.2.96         | 10.40.2.97–10.40.2.98   | 10.40.2.99    |
-|    18 | Länknät 2                         |         2 |        /30 | 10.40.2.100        | 10.40.2.101–10.40.2.102 | 10.40.2.103   |
-|    19 | Länknät 3                         |         2 |        /30 | 10.40.2.104        | 10.40.2.105–10.40.2.106 | 10.40.2.107   |
+## 1. Antal enheter och 25 % tillväxt
 
+| Grupp | Idag | Med 25 % tillväxt |
+| :--- | ---: | ---: |
+| Klienter | 49 | 62 |
+| Gäst och besök | 11 | 14 |
+| Servrar | 11 | 14 |
+| Drift och administration | 4 | 5 |
+| Databaser | 1 | 2 |
+| Logg och övervakning | 4 | 5 |
+| DMZ – webbservrar och publika tjänster | 4 | 5 |
+| DMZ – e-post och externa tjänster | 4 | 5 |
+| Cybersäkerhetsteam | 4 | 5 |
+| Säkerhetsverktyg och analys | 4 | 5 |
+| Incidenthantering och forensik | 4 | 5 |
+| Backup och återställning | 4 | 5 |
+| Nätverksutrustning och management | 4 | 5 |
+| VPN och fjärråtkomst | 11 | 14 |
+| IoT och skrivare | 11 | 14 |
+| Test- och utvecklingsmiljö | 4 | 5 |
+| Länknät mellan routrar | 3 × 2 | 3 × 2 |
 
+*Tillväxten är avrundad uppåt till hela enheter. Länknäten har två användbara adresser vardera.*
 
-## Tillgångar, klassificering och zonindelning
+## 2. VLSM – adressplanering
+
+| # | Grupp | Behov | Prefix | Nätverksadress | Användbara adresser | Broadcast |
+| ---: | :--- | ---: | :--- | :--- | :--- | :--- |
+| 1 | Klienter | 62 | /26 | 10.40.5.0 | 10.40.5.1–10.40.5.62 | 10.40.5.63 |
+| 2 | Gäst och besök | 14 | /28 | 10.40.5.64 | 10.40.5.65–10.40.5.78 | 10.40.5.79 |
+| 3 | VPN och fjärråtkomst | 14 | /28 | 10.40.5.80 | 10.40.5.81–10.40.5.94 | 10.40.5.95 |
+| 4 | IoT och skrivare | 14 | /28 | 10.40.5.96 | 10.40.5.97–10.40.5.110 | 10.40.5.111 |
+| 5 | Servrar | 14 | /28 | 10.40.5.112 | 10.40.5.113–10.40.5.126 | 10.40.5.127 |
+| 6 | Test- och utvecklingsmiljö | 5 | /29 | 10.40.5.128 | 10.40.5.129–10.40.5.134 | 10.40.5.135 |
+| 7 | Cybersäkerhetsteam | 5 | /29 | 10.40.5.136 | 10.40.5.137–10.40.5.142 | 10.40.5.143 |
+| 8 | DMZ – webbservrar | 5 | /29 | 10.40.5.144 | 10.40.5.145–10.40.5.150 | 10.40.5.151 |
+| 9 | Nätverksutrustning och management | 5 | /29 | 10.40.5.152 | 10.40.5.153–10.40.5.158 | 10.40.5.159 |
+| 10 | Drift och administration | 5 | /29 | 10.40.5.160 | 10.40.5.161–10.40.5.166 | 10.40.5.167 |
+| 11 | Säkerhetsverktyg och analys | 5 | /29 | 10.40.5.168 | 10.40.5.169–10.40.5.174 | 10.40.5.175 |
+| 12 | Incidenthantering och forensik | 5 | /29 | 10.40.5.176 | 10.40.5.177–10.40.5.182 | 10.40.5.183 |
+| 13 | Backup och återställning | 5 | /29 | 10.40.5.184 | 10.40.5.185–10.40.5.190 | 10.40.5.191 |
+| 14 | Databaser | 2 | /30 | 10.40.5.208 | 10.40.5.209–10.40.5.210 | 10.40.5.211 |
+| 15 | DMZ – e-post | 5 | /29 | 10.40.5.192 | 10.40.5.193–10.40.5.198 | 10.40.5.199 |
+| 16 | Logg och övervakning | 5 | /29 | 10.40.5.200 | 10.40.5.201–10.40.5.206 | 10.40.5.207 |
+| 17 | Länknät 1 | 2 | /30 | 10.40.5.212 | 10.40.5.213–10.40.5.214 | 10.40.5.215 |
+| 18 | Länknät 2 | 2 | /30 | 10.40.5.216 | 10.40.5.217–10.40.5.218 | 10.40.5.219 |
+| 19 | Länknät 3 | 2 | /30 | 10.40.5.220 | 10.40.5.221–10.40.5.222 | 10.40.5.223 |
+
+**Ledigt adressutrymme:** 10.40.5.224–10.40.5.255.
+
+## 3. Tillgångar, klassificering och zonindelning
 
 | Tillgång | Antal +25 % | Prefix | Känslighet | Driftkritikalitet | Föreslagen zon |
-|---|---:|---|---|---|---|
-| Klienter | 169 | /24 | Medel | Medel | Klientzon |
-| Gäst och besök | 44 | /26 | Låg | Låg | Gästzon |
-| Servrar | 18 | /27 | Hög | Hög | Serverzon |
-| Drift och administration | 12 | /28 | Hög | Hög | Driftzon |
-| Databaser | 5 | /29 | Hög | Hög | Databaszon |
-| Logg och övervakning | 7 | /28 | Hög | Hög | Övervakningszon |
-| DMZ – webbservrar | 10 | /28 | Medel–hög | Hög | DMZ |
-| DMZ – e-post | 8 | /28 | Hög | Hög | DMZ |
-| Cybersäkerhetsteam | 13 | /28 | Hög | Hög | Säkerhetszon |
-| Säkerhetsverktyg och analys | 9 | /28 | Hög | Hög | Säkerhetszon |
-| Incidenthantering och forensik | 8 | /28 | Hög | Hög | Säkerhetszon |
-| Backup och återställning | 7 | /28 | Hög | Hög | Backupzon |
-| Nätverksutrustning och management | 13 | /28 | Hög | Hög | Driftzon |
-| VPN och fjärråtkomst | 30 | /27 | Hög | Hög | VPN-zon |
-| IoT och skrivare | 23 | /27 | Låg–medel | Medel | IoT-zon |
-| Test- och utvecklingsmiljö | 19 | /27 | Medel | Låg–medel | Testzon |
-| Länknät mellan routrar | 3 x 2 | 3 x /30 | Medel | Hög | Transitnät |
+| :--- | ---: | :--- | :--- | :--- | :--- |
+| Klienter | 62 | /26 | Medel | Medel | Klientzon |
+| Gäst och besök | 14 | /28 | Låg | Låg | Gästzon |
+| Servrar | 14 | /28 | Hög | Hög | Serverzon |
+| Drift och administration | 5 | /29 | Hög | Hög | Driftzon |
+| Databaser | 2 | /30 | Hög | Hög | Databaszon |
+| Logg och övervakning | 5 | /29 | Hög | Hög | Övervakningszon |
+| DMZ – webbservrar | 5 | /29 | Medel–hög | Hög | DMZ |
+| DMZ – e-post | 5 | /29 | Hög | Hög | DMZ |
+| Cybersäkerhetsteam | 5 | /29 | Hög | Hög | Säkerhetszon |
+| Säkerhetsverktyg och analys | 5 | /29 | Hög | Hög | Säkerhetszon |
+| Incidenthantering och forensik | 5 | /29 | Hög | Hög | Säkerhetszon |
+| Backup och återställning | 5 | /29 | Hög | Hög | Backupzon |
+| Nätverksutrustning och management | 5 | /29 | Hög | Hög | Driftzon |
+| VPN och fjärråtkomst | 14 | /28 | Hög | Hög | VPN-zon |
+| IoT och skrivare | 14 | /28 | Låg–medel | Medel | IoT-zon |
+| Test- och utvecklingsmiljö | 5 | /29 | Medel | Låg–medel | Testzon |
+| Länknät mellan routrar | 3 × 2 | 3 × /30 | Medel | Hög | Transitnät |
 
+## 4. Kort motivering
+
+Vi har anpassat antalet enheter för att alla grupper ska få plats inom nätet 10.40.5.0/24. Vi använde VLSM för att dela upp nätet i mindre subnät efter varje grupps behov, inklusive 25 % tillväxt. Vi har behållit separata nät för bland annat klienter, servrar, databaser och administration för att förbättra säkerheten och minska risken för obehörig åtkomst.
 ## 2. Motivering till zonindelning
 
 Vi har delat in tillgångarna i olika säkerhetszoner utifrån deras funktion, känslighet och driftkritikalitet.
