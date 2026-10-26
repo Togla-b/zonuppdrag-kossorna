@@ -27,11 +27,10 @@ Kossorna
 
 
 ## Roller
-- **Facilitator:** Kareem
+- **Facilitator:** Kareem + Andre
 - **Tidhållare:** Rasmus
 - **Kundens röst:** Algot
-- **Presentatörer:** Martin och Gabriel
-- **Andre:** uppdateras nästa träff
+- **Presentatörer:** Martin + Gabriel
 
 ## Våra regler
 
