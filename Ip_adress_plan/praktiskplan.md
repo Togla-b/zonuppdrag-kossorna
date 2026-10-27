@@ -13,8 +13,8 @@ Vi har valt att dela upp nätverket i fyra zoner med hjälp av VLSM, utifrån an
 | Jumpserver | 1 | /30 | 10.40.5.0 | 10.40.5.1–10.40.5.2 | 10.40.5.3 |
 | Loggserver | 1 | /30 | 10.40.5.4 | 10.40.5.5–10.40.5.6 | 10.40.5.7 |
 | CTF-server | 1 | /30 | 10.40.5.8 | 10.40.5.9–10.40.5.10 | 10.40.5.11 |
-| Elevservrar | 6 | /28 | 10.40.5.16 | 10.40.5.17–10.40.5.30 | 10.40.5.31 |
-
+| Elevservrar | 6 | /28 | 10.40.5.16 | 10.40.5.18–10.40.5.30 | 10.40.5.31 |
+                                      *10.40.5.17-reserverad för Hetzner*
 **Motivering:** Vi har valt `/30` för zonerna med en server och `/28` för elevservrarna. Ett `/28` ger 14 användbara IP-adresser, vilket ger plats för våra 6 elevservrar, gateway och eventuella reserverade adresser.
 
 Alla subnät ligger inom `10.40.5.0/24` och överlappar inte.
