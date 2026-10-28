@@ -1,73 +1,153 @@
-# Zonmodell och IP-adressplan
+# Zonmodell och IP-adressplan – Team 5
 
 ## 1. Tilldelat nätverk
 
-Vi har blivit tilldelade nätverket **10.40.5.0/24** av läraren och får använda maximalt 8 subnät.
+Vi har blivit tilldelade det privata nätverket **10.40.5.0/24** av läraren.
 
-Vi har valt att dela upp nätverket i fyra zoner med hjälp av VLSM, utifrån antalet servrar och deras behov.
+Nätverket är skapat i Hetzner och heter `itsx26-team-5`.
+
+Vi har valt att dela upp nätverket i **6 säkerhetszoner** med hjälp av VLSM. Varje gruppmedlem ansvarar för en zon.
+
+Vi använder IPv4. IPv6 är avstängt på labbservrarna.
 
 ## 2. IP-adressplan
 
-| Zon | Antal servrar | Prefix | Nätverksadress | Användbara IP-adresser | Broadcast |
-| :--- | ---: | :--- | :--- | :--- | :--- |
-| Jumpserver | 1 | /30 | 10.40.5.0 | 10.40.5.1–10.40.5.2 | 10.40.5.3 |
-| Loggserver | 1 | /30 | 10.40.5.4 | 10.40.5.5–10.40.5.6 | 10.40.5.7 |
-| CTF-server | 1 | /30 | 10.40.5.8 | 10.40.5.9–10.40.5.10 | 10.40.5.11 |
-| Elevservrar | 6 | /28 | 10.40.5.16 | 10.40.5.18–10.40.5.30 | 10.40.5.31 |
-                                      *10.40.5.17-reserverad för Hetzner*
-**Motivering:** Vi har valt `/30` för zonerna med en server och `/28` för elevservrarna. Ett `/28` ger 14 användbara IP-adresser, vilket ger plats för våra 6 elevservrar, gateway och eventuella reserverade adresser.
+| Zon | Antal servrar | Prefix | Nätverksadress | Reserverade adresser | Möjliga serveradresser | Broadcast |
+| :--- | ---: | :--- | :--- | :--- | :--- | :--- |
+| Administrationszon | 1 | /30 | 10.40.5.0 | .0, .1 (gateway), .3 | 10.40.5.2 | 10.40.5.3 |
+| Loggzon | 1 | /30 | 10.40.5.4 | .4, .7 | 10.40.5.5–10.40.5.6 | 10.40.5.7 |
+| CTF-zon | 1 | /30 | 10.40.5.8 | .8, .11 | 10.40.5.9–10.40.5.10 | 10.40.5.11 |
+| Elevzon | 6 | /28 | 10.40.5.16 | .16, .31 | 10.40.5.17–10.40.5.30 | 10.40.5.31 |
+| Driftzon | 1 (planerad) | /30 | 10.40.5.32 | .32, .35 | 10.40.5.33–10.40.5.34 | 10.40.5.35 |
+| DMZ | 1 (planerad) | /30 | 10.40.5.36 | .36, .39 | 10.40.5.37–10.40.5.38 | 10.40.5.39 |
 
-Alla subnät ligger inom `10.40.5.0/24` och överlappar inte.
+### Hetzners reserverade adresser
+
+Hetzner använder **10.40.5.1 som gateway för hela nätverket**, inte en gateway per subnät.
+
+Följande adresser kan inte tilldelas servrar:
+
+- Nätverksadressen i varje subnät.
+- Broadcastadressen i varje subnät.
+- Gatewayadressen `10.40.5.1`.
+- Eventuella ytterligare adresser som Hetzner reserverar.
+
+De angivna serveradresserna är preliminära tills vi har kontrollerat att de är tillgängliga i Hetzner.
+
+**Observera:** Vi behöver också kontrollera om Hetzner tillåter `/30` som subnätsstorlek innan vi skapar dessa subnät.
 
 ## 3. Tillgångar, klassificering och zonindelning
 
-| Tillgång | Antal | Prefix | Känslighet | Driftkritikalitet | Föreslagen zon |
-| :--- | ---: | :--- | :--- | :--- | :--- |
-| Jumpserver | 1 | /30 | Hög | Hög | Administrationszon |
-| Loggserver | 1 | /30 | Hög | Hög | Loggzon |
-| CTF-server | 1 | /30 | Hög | Medel | CTF-zon |
-| Elevservrar | 6 | /28 | Medel | Medel | Elevzon |
+| Zon | Enheter/servrar | Antal | Känslighet | Driftkritikalitet | Ansvarig |
+| :--- | :--- | ---: | :--- | :--- | :--- |
+| Administrationszon | Jumpserver | 1 | Hög | Hög | Gabriel |
+| Loggzon | Loggserver | 1 | Hög | Hög | Martin |
+| CTF-zon | CTF-server | 1 | Hög | Medel | Algot |
+| Elevzon | Elevservrar | 6 | Medel | Medel | Kareem |
+| Driftzon | Övervakningsserver (planerad) | 1 | Hög | Hög | Andre |
+| DMZ | Webbserver (planerad) | 1 | Medel | Medel | Rasmus |
 
 ### Motivering
 
-- **Jumpserver:** Hög känslighet och driftkritikalitet eftersom den används för att administrera andra servrar.
-- **Loggserver:** Hög känslighet och driftkritikalitet eftersom den innehåller viktiga säkerhetsloggar.
-- **CTF-server:** Hög känslighet eftersom den kan innehålla känsliga uppgifter, flaggor och säkerhetsövningar. Driftkritikaliteten bedöms som medel.
-- **Elevservrar:** Medel känslighet och driftkritikalitet eftersom de används för laborationer.
+**Administrationszon:** Jumpservern används för administration och åtkomst till andra servrar. Därför har den hög känslighet och driftkritikalitet.
 
-## 4. Tillitsregler
+**Loggzon:** Loggservern innehåller säkerhetsloggar som behövs för felsökning och incidenthantering.
 
-Vi utgår från principen att endast nödvändig trafik mellan zonerna ska tillåtas.
+**CTF-zon:** CTF-servern har hög känslighet eftersom den kan innehålla flaggor och känslig övningsinformation. Driftkritikaliteten bedöms som medel.
+
+**Elevzon:** Innehåller gruppens 6 elevservrar som används för laborationer. Alla placeras i samma subnät.
+
+**Driftzon:** En planerad övervakningsserver som ska användas för att kontrollera systemens status och upptäcka problem.
+
+**DMZ:** En planerad webbserver som kan tillhandahålla webbtjänster utan att ha fri åtkomst till interna zoner.
+
+## 4. Föreslagen IP-fördelning
+
+| Enhet | Föreslagen IP-adress | Ansvarig |
+| :--- | :--- | :--- |
+| Hetzner gateway | 10.40.5.1 | Hetzner |
+| Jumpserver | 10.40.5.2 | Gabriel |
+| Loggserver | 10.40.5.5 | Martin |
+| CTF-server | 10.40.5.9 | Algot |
+| Elevserver 1 | 10.40.5.17 | Teamet |
+| Elevserver 2 | 10.40.5.18 | Teamet |
+| Elevserver 3 | 10.40.5.19 | Teamet |
+| Elevserver 4 | 10.40.5.20 | Teamet |
+| Elevserver 5 | 10.40.5.21 | Teamet |
+| Elevserver 6 | 10.40.5.22 | Teamet |
+| Övervakningsserver (planerad) | 10.40.5.33 | Andre |
+| Webbserver (planerad) | 10.40.5.37 | Rasmus |
+
+Adresserna ska verifieras innan de används med `moln koppla`.
+
+## 5. Zonmodell och tillitsregler
+
+Vi följer principen att endast nödvändig trafik ska tillåtas mellan zonerna.
 
 | Källa | Mål | Protokoll/port | Beslut | Motivering |
 | :--- | :--- | :--- | :--- | :--- |
-| Jumpserver | Elevservrar | TCP/22 (SSH) | Tillåt | Elever ska kunna ansluta till sina labbservrar. |
-| Elevservrar | Loggserver | TCP/6514 | Tillåt vid behov | Skicka säkerhetsloggar om tjänsten används. |
-| Elevservrar | CTF-server | Enligt övning | Tillåt vid behov | Genomföra CTF-övningar. |
-| CTF-server | Jumpserver | Alla portar | Neka | Skydda administrationszonen. |
-| Elevservrar | Jumpserver | Nya anslutningar | Neka som standard | Begränsa obehörig åtkomst. |
+| Administrationszon | Elevzon | TCP/22 (SSH) | Tillåt | Administration och inloggning på elevservrar. |
+| Elevzon | Loggzon | Enligt konfigurerad syslog-tjänst | Tillåt | Skicka säkerhetsloggar till loggservern. |
+| Elevzon | CTF-zon | Enligt övning | Tillåt vid behov | Genomföra CTF-övningar. |
+| Driftzon | Övriga zoner | Endast övervakningsportar | Tillåt vid behov | Kontrollera servrarnas status. |
+| Internet | DMZ | TCP/80 och TCP/443 | Tillåt vid behov | Tillhandahålla webbtrafik. |
+| DMZ | Administrationszon | Alla portar | Neka | Skydda administrationszonen. |
+| CTF-zon | Administrationszon | Alla portar | Neka | Begränsa åtkomst till Jumpservern. |
 
-Reglerna är förslag och behöver anpassas efter hur labbmiljön faktiskt fungerar.
+## 6. Säkerhetsprinciper
 
-## 5. Grundläggande säkerhetsprinciper
-
-- **Minsta möjliga åtkomst:** Endast nödvändig kommunikation tillåts.
+- **Minsta möjliga åtkomst:** Endast nödvändig trafik tillåts.
 - **Blockera som standard:** Övrig trafik mellan zonerna nekas.
-- **Segmentering:** Servrarna delas upp i separata subnät.
-- **Skyddad administration:** SSH till elevservrarna sker via Jumpservern.
-- **Central loggning:** Säkerhetsloggar kan samlas på Loggservern.
-- **CTF-isolering:** CTF-servern ska inte ha obehörig åtkomst till andra zoner.
+- **Segmentering:** Servrar delas upp i olika subnät.
+- **Skyddad administration:** Administration sker via Jumpservern.
+- **Central loggning:** Säkerhetsloggar skickas till Loggservern.
+- **DMZ:** Webbservern isoleras från interna system.
+- **Övervakning:** Driftzonen används för att kontrollera systemens status.
 
-## 6. Verifiering
+### Viktigt om Hetzner
+
+Trafik i det privata nätverket passerar inte Hetzners molnbrandvägg.
+
+Därför behöver vi använda **nftables på servrarna** för att filtrera trafiken.
+
+Separata subnät ger inte automatiskt fullständig säkerhetsisolering.
+
+## 7. Verifiering och uppföljning
 
 Vi ska kontrollera att:
 
 - Alla subnät ligger inom `10.40.5.0/24`.
 - Inga subnät överlappar.
+- Reserverade IP-adresser inte tilldelas servrar.
+- Varje server får rätt privat IP-adress.
 - SSH via Jumpservern fungerar.
-- Nödvändig kommunikation mellan zonerna fungerar.
-- Otillåten trafik blockeras.
+- Servrarna kan kommunicera där det behövs.
+- Otillåten trafik blockeras med nftables.
 
-Separata subnät ger inte automatiskt säkerhetsisolering. För att genomföra zonmodellen behöver vi även rätt routing och brandväggsregler.
+### Kommandon för kontroll
 
-Innan vi inför IP-planen måste vi kontrollera molnleverantörens reserverade adresser och hur nätverket är konfigurerat.
+Kontrollera nätverket och subnäten:
+
+```bash
+moln status
+```
+
+Kontrollera serverns nätverkskort:
+
+```bash
+ip -br addr
+```
+
+Kontrollera routing:
+
+```bash
+ip route
+```
+
+Testa anslutningen till en annan server:
+
+```bash
+ping -c 2 <teamkamratens-IP>
+```
+
+Innan vi ändrar brandväggsregler ska vi säkerställa att SSH-åtkomsten fortsätter fungera.
