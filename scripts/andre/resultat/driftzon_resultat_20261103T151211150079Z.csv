@@ -1,0 +1,4 @@
+id,kalla,destination,port,protokoll,riktning,forvantat,förutsättning,tid_utc,faktiskt,bedömning,detalj
+F7-till-Gabriel,10.40.5.33,10.40.5.2,-,icmp,ut,oppen,Gabriel tillåter ping från .33,2026-11-03T15:12:11.165733+00:00,oppen,matchar_förväntat,Echo reply mottaget
+F7-till-Rasmus,10.40.5.33,10.40.5.37,-,icmp,ut,oppen,Rasmus tillåter ping från .33,2026-11-03T15:12:11.178097+00:00,oppen,matchar_förväntat,Echo reply mottaget
+F14-nek-SSH,10.40.5.33,10.40.5.2,22,tcp,ut,tyst,Egen output ska blockera nya SSH-försök till Gabriel; verifiera ZON-UT-DROP med DST=10.40.5.2 och DPT=22 samt att ingen SYN lämnar eth2,2026-11-03T15:12:14.184191+00:00,tyst,matchar_förväntat,Inget svar före timeout; kontrollera PCAP och brandväggslogg
