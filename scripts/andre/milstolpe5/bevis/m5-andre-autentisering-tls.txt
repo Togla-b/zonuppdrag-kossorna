@@ -1,0 +1,3 @@
+mottaget 2026-11-09T09:13:01.977Z TLS      | 2026-11-09T09:13:01.527748+00:00 172.20.1.115 elev-15 audisp-syslog[96226] type=EXECVE msg=audit(1794215581.525:6855): argc=3 a0="sudo" a1="/usr/bin/echo" a2="M5-ANDRE-AUTH-20261109T091301Z"
+mottaget 2026-11-09T09:13:05.585Z TLS      | 2026-11-09T09:13:05.435967+00:00 172.20.1.115 elev-15 sudo[96748] student : TTY=pts/0 ; PWD=/home/student ; USER=root ; COMMAND=/usr/bin/echo M5-ANDRE-AUTH-20261109T091301Z
+mottaget 2026-11-09T09:13:05.585Z TLS      | 2026-11-09T09:13:05.445273+00:00 172.20.1.115 elev-15 audisp-syslog[96226] type=EXECVE msg=audit(1794215585.443:6864): argc=2 a0="/usr/bin/echo" a1="M5-ANDRE-AUTH-20261109T091301Z"

@@ -1,0 +1,4 @@
+mottaget 2026-11-09T09:26:25.104Z TLS      | 2026-11-09T09:26:24.709675+00:00 172.20.1.115 elev-15 M5-ANDRE[5501] M5-ANDRE-NYTEST-20261109T092624Z
+mottaget 2026-11-09T09:26:44.104Z TLS      | 2026-11-09T09:26:43.713916+00:00 172.20.1.115 elev-15 audisp-syslog[611] type=EXECVE msg=audit(1794216403.710:3525): argc=5 a0="sudo" a1="grep" a2="-F" a3="M5-ANDRE-NYTEST-20261109T092624Z" a4="/var/log/messages"
+mottaget 2026-11-09T09:26:44.105Z TLS      | 2026-11-09T09:26:43.728896+00:00 172.20.1.115 elev-15 sudo[5502] student : TTY=pts/0 ; PWD=/home/student ; USER=root ; COMMAND=/bin/grep -F M5-ANDRE-NYTEST-20261109T092624Z /var/log/messages
+mottaget 2026-11-09T09:26:44.106Z TLS      | 2026-11-09T09:26:43.736733+00:00 172.20.1.115 elev-15 audisp-syslog[611] type=EXECVE msg=audit(1794216403.732:3531): argc=4 a0="grep" a1="-F" a2="M5-ANDRE-NYTEST-20261109T092624Z" a3="/var/log/messages"
