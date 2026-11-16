@@ -27,3 +27,4 @@ Resultat: 5 träffar.
 Resultat: 5 träffar.
 
 **Verifiering:** Loggen visade `comm="touch"`, `auid=1000`, `euid=0` och `success=yes`. Händelsen jämfördes med vårt tidigare testkommando `sudo /usr/bin/touch /tmp/root-monitor-test`.
+___
