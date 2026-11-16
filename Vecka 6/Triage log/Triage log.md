@@ -18,7 +18,7 @@
 `location:*elev-44* AND full_log:*root_commands*`
 
 Resultat: 5 träffar.
-___
+
 
 **Sökning 2 – Alla servrar:**
 
