@@ -15,7 +15,7 @@
 | 5 | Zonvakt kör i domänen zonvakt_t | Stämmer | `ps -eZ \| grep zonvakt` |
 | 6 | Egen domän möjliggör särskilda åtkomstbegränsningar | Stämmer | SELinux-domänen verifierad. Tidigare negativt test gav Permission denied. |
 | 7 | /srv/zonwebb har typen httpd_sys_content_t | Stämmer | `ls -Zd /srv/zonwebb` |
-| 8 | httpd_sys_content_t är avsedd för webbinnehåll | Stämmer | SELinux-typens normala användningsområde. |
+| 8 | httpd_sys_content_t är avsedd för webbinnehåll | Ogrundat i redovisat underlag | `ls -Zd /srv/zonwebb` visar att etiketten används, men bevisar inte dess avsedda användningsområde. Påståendet behöver stöd i SELinux-dokumentation. |
 | 9 | Etikettestet bevisar inte att Apache kan leverera sidan | Stämmer | `ls -Zd` visar etikett, inte HTTP-funktion. |
 | 10 | Verifieringsskriptet finns | Stämmer | Skriptet kördes via sin sökväg. |
 | 11 | Skriptet kontrollerar tre säkerhetsinställningar | Stämmer | Skriptets tre kontroller gav GÄLLER. |
