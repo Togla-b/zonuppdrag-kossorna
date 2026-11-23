@@ -1,0 +1,41 @@
+
+#!/bin/bash
+
+fel=0
+
+if [ "$(getenforce)" = "Enforcing" ]; then
+    echo "GÄLLER: SELinux är i enforcing-läge"
+else
+    echo "GÄLLER INTE: SELinux är inte i enforcing-läge"
+    fel=1
+fi
+
+if grep -qx 'SELINUX=enforcing' /etc/selinux/config; then
+    echo "GÄLLER: SELinux är enforcing efter omstart"
+else
+    echo "GÄLLER INTE: SELinux är inte enforcing efter omstart"
+    fel=1
+fi
+
+if systemctl is-enabled --quiet zonvakt; then
+    echo "GÄLLER: zonvakt är aktiverad vid uppstart"
+else
+    echo "GÄLLER INTE: zonvakt är inte aktiverad"
+    fel=1
+fi
+
+if sudo semodule -l | grep -q '^zonvakt'; then
+    echo "GÄLLER: SELinux-modulen zonvakt är laddad"
+else
+    echo "GÄLLER INTE: SELinux-modulen zonvakt saknas"
+    fel=1
+fi
+
+if ps -eZ | grep zonvakt | grep -q 'zonvakt_t'; then
+    echo "GÄLLER: zonvakt kör i zonvakt_t"
+else
+    echo "GÄLLER INTE: zonvakt kör inte i zonvakt_t"
+    fel=1
+fi
+
+exit "$fel"
