@@ -29,9 +29,3 @@ Vid granskningen upptäckte jag att påstående 8 saknade tillräckligt stöd i 
 Jag ändrade därför bedömningen av påstående 8 från **Stämmer** till **Ogrundat i redovisat underlag**.
 
 Detta visar varför AI-genererade påståenden behöver granskas kritiskt. Ett kommando kan bekräfta en viss inställning utan att bevisa alla slutsatser som AI drar av resultatet.
-
-Jag granskade AI-utkastets 12 numrerade påståenden mot kommandon och resultat från min egen server.
-
-Alla 12 bedömdes som korrekta. Påstående 9 markerades först som ogrundat, men efter att ha granskat vad kommandot faktiskt visar ändrade jag bedömningen till stämmer.
-
-Granskningen visar också vikten av att skilja mellan en korrekt SELinux-etikett och att en tjänst faktiskt fungerar. Ett kommando kan bekräfta en viss inställning utan att bevisa att hela tjänsten fungerar.
