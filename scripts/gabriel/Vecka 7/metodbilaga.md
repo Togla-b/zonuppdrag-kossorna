@@ -184,11 +184,15 @@ Rapporten visar däremot inte genom dessa kommandon ensamma att alla otillåtna 
 
 ### Granskning av AI-rapporten
 
-Jag granskade AI-utkastets 12 numrerade påståenden mot kommandon och resultat från min labbserver.
+Jag granskade AI-utkastets 12 numrerade påståenden mot kommandon och resultat från min egen labbserver.
 
-Alla 12 påståenden bedömdes som korrekta.
+Vid granskningen upptäckte jag att påstående 8 saknade tillräckliga belägg i det redovisade underlaget. AI påstod att SELinux-typen `httpd_sys_content_t` är avsedd för webbinnehåll.
 
-Påstående 9 bedömde jag först som ogrundat, men ändrade till stämmer efter att ha kontrollerat vad kommandot `ls -Zd` faktiskt visar.
+Jag kontrollerade påståendet med `ls -Zd /srv/zonwebb`. Kommandot visade att katalogen hade typen `httpd_sys_content_t`, men bevisade inte vad typen är avsedd att användas till.
+
+**Rättelse:** Jag ändrade bedömningen av påstående 8 från **Stämmer** till **Ogrundat i redovisat underlag**. Påståendet behöver kompletteras med SELinux-dokumentation för att kunna styrkas.
+
+**Lärdom:** Jag lärde mig att skilja mellan vad ett kommando faktiskt verifierar och vilka slutsatser AI drar av resultatet. Ett tekniskt rimligt påstående är inte automatiskt verifierat.
 
 Den fullständiga granskningen finns i `granskningsprotokoll.md`.
 
